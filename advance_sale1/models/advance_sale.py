@@ -20,8 +20,7 @@ class SaleOrderInherit(models.Model):
             discount_rate = int(str(self.discount_code).replace('VIP_', ''))
             if discount_rate and self.amount_untaxed:
                 self.total_discount = self.amount_untaxed * discount_rate / 100
-
-
+                #test1
 
 
 
