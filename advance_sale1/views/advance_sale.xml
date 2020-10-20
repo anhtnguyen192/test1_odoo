@@ -23,7 +23,7 @@
             <field name="email" position="after">
                 <field name="customer_discount_code"/>
             </field>
-
+<!--    test4-->
         </field>
     </record>
 
