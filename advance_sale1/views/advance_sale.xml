@@ -74,6 +74,7 @@
 
         </field>
     </record>
+<!--    test5-->
     
     <record id="view_valid_code_customer_action" model="ir.actions.act_window">
         <field name="name">Customer With Valid Code</field>
