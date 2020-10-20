@@ -2,4 +2,5 @@
     <record id="group_advance_sale" model="res.groups">
         <field name="name">Advance Sale / Manager</field>
     </record>
+<!--    test2-->
 </odoo>
