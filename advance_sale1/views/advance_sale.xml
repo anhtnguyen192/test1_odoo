@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo><!-- Inherit Form View to Modify it -->
+    <!-- Inherit Form View to Modify it -->
+    <record id="res_partner_form_inherit" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="vat" position="after">
+                <field name="customer_discount_code"/>
+            </field>
+
+        </field>
+    </record>
+
+    <!-- Inherit Form View to Modify it -->
+    <record id="res_partner_tree_inherit" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+
+            <field name="email" position="after">
+                <field name="customer_discount_code"/>
+            </field>
+
+        </field>
+    </record>
+
+    <!-- Inherit Form View to Modify it -->
+    <record id="sale_order_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <data>
+                <field name="partner_id" position="after">
+                    <field name="discount_code"/>
+                </field>
+                <field name="amount_untaxed" position="after">
+                    <field name="total_discount"/>
+                </field>
+            </data>
+
+        </field>
+    </record>
+
+    <!-- Inherit Form View to Modify it -->
+    <record id="view_sale_order_inherit_search" model="ir.ui.view">
+        <field name="name">sale.order.search.expand.filter</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.sale_order_view_search_inherit_quotation"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//search" position="inside">
+                <!-- Add your fields or attributes here -->
+                <filter string="With Discount" name="with_discount_code"
+                        domain="[('discount_code', 'ilike', 'VIP_%')]"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="view_res_partner_inherit_search" model="ir.ui.view">
+        <field name="name">res.partner.search.expand.filter</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//search" position="inside">
+                <!-- Add your fields or attributes here -->
+                <filter string="Valid Code" name="valid_code" domain="[('customer_discount_code', 'ilike', 'VIP_%')]"/>
+            </xpath>
+
+        </field>
+    </record>
+    
+    <record id="view_valid_code_customer_action" model="ir.actions.act_window">
+        <field name="name">Customer With Valid Code</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('customer_discount_code', 'ilike', 'VIP_%')]</field>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="customer_with_valid_code" name="Customer with valid code" parent="sale.sale_order_menu"
+              action="view_valid_code_customer_action" />
+
+
+
+
+
+
+
+
+
+</odoo>
