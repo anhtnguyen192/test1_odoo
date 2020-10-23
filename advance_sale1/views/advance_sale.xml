@@ -87,7 +87,7 @@
     <!-- This Menu Item must have a parent and an action -->
     <menuitem id="customer_with_valid_code" name="Customer with valid code" parent="sale.sale_order_menu"
               action="view_valid_code_customer_action" />
-
+<!--    test6-->
 
 
 
